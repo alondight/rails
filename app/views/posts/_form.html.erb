@@ -1,0 +1,25 @@
+<%= form_with(model: post, local: true, multipart: true) do |form| %>
+
+  <% if post.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
+      <ul>
+      <% post.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+​
+
+  <div class="actions">
+    <%= form.label :제목 %>
+    <%= form.text_field :title%>
+    <%= form.label :내용 %>
+    <%= form.text_area :contents, id: :post_content, class: "form-control tinymce", rows: "10" %>
+    <%= form.file_field :attachment %>
+    <%= form.submit %>
+  </div>
+
+<% end %>
+
